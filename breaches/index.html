@@ -1,0 +1,41 @@
+---
+layout: default
+title: Breach analyses
+summary: What happened in real breaches, how access was abused, which controls failed and what we can learn.
+---
+{% assign items = site.breaches | sort: "date" | reverse %}
+{% assign all_tags = site.breaches | map: "tags" | join: "," | split: "," | uniq | sort %}
+<div class="page-head">
+  <h1>Breach analyses</h1>
+  <p>What happened in real breaches. How access was abused. Which controls failed and what we can learn from it.</p>
+  {% if items.size > 2 %}
+  <div class="chips" role="group" aria-label="Filter by topic">
+    <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+    {% for t in all_tags %}<button class="chip" type="button" data-filter="{{ t }}" aria-pressed="false">{{ t }}</button>{% endfor %}
+  </div>
+  {% endif %}
+</div>
+<div class="list">
+  {% for p in items %}
+  <a class="item" href="{{ p.url | relative_url }}" data-tags="{{ p.tags | join: ',' }}">
+    <h3>{{ p.title }}</h3>
+    <p>{{ p.summary }}</p>
+    <div class="chips"><span class="chip">{{ p.date | date: "%-d %B %Y" }}</span>{% for t in p.tags %}<span class="chip">{{ t }}</span>{% endfor %}</div>
+  </a>
+  {% endfor %}
+</div>
+<script>
+(function(){
+  var btns=document.querySelectorAll('[data-filter]'),items=document.querySelectorAll('.item');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-filter');
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      items.forEach(function(i){
+        var t=(i.getAttribute('data-tags')||'').split(',');
+        i.hidden=!(f==='all'||t.indexOf(f)>-1);
+      });
+    });
+  });
+})();
+</script>

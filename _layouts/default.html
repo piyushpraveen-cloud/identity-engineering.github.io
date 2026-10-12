@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% if page.title %}{{ page.title }} | {% endif %}Piyush Praveen</title>
+<meta name="description" content="{{ page.summary | default: 'Cyber security notes and analysis by Piyush Praveen.' | escape }}">
+<meta property="og:title" content="{{ page.title | default: 'Piyush Praveen' | escape }}">
+<meta property="og:description" content="{{ page.summary | default: 'Cyber security notes and analysis by Piyush Praveen.' | escape }}">
+<meta property="og:type" content="{{ page.og_type | default: 'article' }}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔐%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+<div class="wrap">
+{% include header.html %}
+<main>
+{{ content }}
+</main>
+{% include footer.html %}
+</div>
+</body>
+</html>
