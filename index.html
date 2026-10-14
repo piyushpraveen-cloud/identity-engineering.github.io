@@ -5,6 +5,7 @@ summary: Fundamentals, handwritten notes, breach analyses and current topics in 
 og_type: website
 ---
 {% assign latest = site.breaches | sort: "date" | reverse | first %}
+{% assign latest_post = site.blog | sort: "date" | reverse | first %}
 <div class="hero">
   <h1>Cyber Security Knowledge Hub</h1>
   <p class="lead">Fundamentals. Notes. Breach analyses. Current topics. Written by Piyush Praveen to learn and to share.</p>
@@ -25,7 +26,21 @@ og_type: website
   <h2>Browse the hub</h2>
   <p class="sub">Everything is grouped by format. New material is added as I learn and write.</p>
   <div class="hub">
-    <article class="card live" style="--c:var(--red)" data-keywords="breach breaches incident threats attack mfa identity privileged uber">
+        <article class="card live" style="--c:var(--green)" data-keywords="blog opinion strategy identity privileged leadership zero trust breakglass whitepaper">
+      <div>
+        <p class="status on">Live</p>
+        <h3>Blog</h3>
+        <p>Longer pieces on identity and privileged access and security practice.</p>
+        <div class="btns"><a class="btn primary" href="{{ '/blog/' | relative_url }}">Read the blog</a></div>
+      </div>
+      {% if latest_post %}
+      <a class="latest" href="{{ latest_post.url | relative_url }}">
+        <p class="meta">Latest post</p>
+        <h4>{{ latest_post.title }}</h4>
+        <p>{{ latest_post.summary }}</p>
+      </a>
+      {% endif %}
+    </article>
       <div>
         <p class="status on">Live</p>
         <h3>Breach analyses</h3>
