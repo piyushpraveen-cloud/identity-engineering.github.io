@@ -6,10 +6,18 @@ collections:
   breaches:
     output: true
     permalink: /breaches/:name/
+  blog:
+    output: true
+    permalink: /blog/:name/
 defaults:
   - scope:
       path: ""
       type: breaches
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: blog
     values:
       layout: post
 exclude:
